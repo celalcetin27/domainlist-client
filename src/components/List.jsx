@@ -5,7 +5,7 @@ import Logout from "./Logout"
 const List = () => {
 
 
-    console.log(process.env.REACT_APP_API_KEY);
+    
     const [domains, setDomain] = useState({ domain: "" })
     const [domainList, setDomainList] = useState([])
     const [results, setResults] = useState([])
