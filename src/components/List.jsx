@@ -27,7 +27,7 @@ const List = () => {
             setResults(domainProps)
 
         } catch (error) {
-            console.log(error);
+            console.log("error : " ,error);
         }
     }
 
