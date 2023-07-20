@@ -2,9 +2,10 @@ import { useState } from "react";
 import "../style/Login.css"
 import { NavLink ,useNavigate} from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2"
 const Login = () => {
 
-
+  
   const navigate = useNavigate()
   const [user, setUser] = useState({
     username: "",
@@ -20,21 +21,40 @@ const Login = () => {
   const handleClick = async e => {
     e.preventDefault()
     if (user.username === "" || user.password === "") {
-      alert("Lütfen tüm alanları doldurun")
+      Swal.fire(
+        'Lütfen tüm alanaları doldurunuz',
+        'Tekrar giriş yapmayı deneyiniz',
+        'error'
+      )
     }
     try {
       const response = await axios.post("http://localhost:8080/login", user)
       if (response.status === 200) {
         setLogin(true)
         console.log(response.data.token);
-        alert("Giriş işlemi tamamlandı kayıtları görebilirsiniz")
+
+        Swal.fire(
+          'Giriş Yaptınız',
+          'İçerikleri Görebilirsiniz',
+          'success'
+        )
+        
         navigate("/list")
       }
       else if (response.status === 400) {
-        alert("Bilgileriniz yanlış ya da eksik girilmiştir")
+        Swal.fire(
+          'Bilgileriniz yanlış ya da eksik girilmiştir',
+          'Tekrar giriş yapmayı deneyiniz',
+          'error'
+        )
       }
       else {
-        alert("Lütfen geçerli ve eksiksiz bilgiler girin")
+        Swal.fire(
+          'Lütfen geçerli ve eksiksiz bilgiler girin',
+          'Tekrar giriş yapmayı deneyiniz',
+          'error'
+        )
+        
       }
     } catch (error) {
       console.log(error);

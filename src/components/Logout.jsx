@@ -1,6 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import Swal from "sweetalert2"
+
 const Logout =  () => {
     const navigate = useNavigate()
     const handleLogout = async (e) => {
@@ -8,7 +10,11 @@ const Logout =  () => {
         try {
             const response = await axios.post("http://localhost:8080/domains")
             if (response.status === 200) {
-                alert("Çıkış başarılı")
+                Swal.fire(
+                    'Çıkış Başarılı',
+                    'İçerikleri görmek için tekrar giriş yapınız',
+                    'success'
+                  )
                 navigate("/")
             }
         } catch (error) {

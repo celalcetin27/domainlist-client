@@ -2,6 +2,7 @@ import axios from "axios";
 import "../style/Signup.css"
 import { useState } from "react";
 import { NavLink , useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
     const [signup,setSignUp] = useState(false)
@@ -20,23 +21,37 @@ const SignUp = () => {
     const handleClick = async e => {
         e.preventDefault()
         if (user.username ==="" || user.email ==="" || user.password ==="") {
-            console.log("1");
-            alert("Lütfen tüm alanları doldurun")
-            console.log("2");
+            Swal.fire(
+                'Lütfen tüm alanaları doldurunuz',
+                'Tekrar kayıt olmayı deneyiniz',
+                'error'
+              )
         }
         try {
             
           const response=   await axios.post("http://localhost:8080/register", user)
           if (response.status === 200) {
             setSignUp(true)
-            alert("Kayıt işlemi tamamlandı")
+            Swal.fire(
+                'Kayıt Tamamlandı',
+                'Giriş Yapabilirsiniz',
+                'success'
+              )
             navigate("/")
           }
           else if(response.status ===400){
-            alert("Lütfen tüm alanları doldurun")
+            Swal.fire(
+                'Lütfen tüm alanaları doldurunuz',
+                'Tekrar kayıt olmayı deneyiniz',
+                'error'
+              )
           }
           else {
-            alert("Lütfen geçerli ve eksiksiz bilgiler girin")
+            Swal.fire(
+                'Lütfen tüm alanaları doldurunuz',
+                'Tekrar kayıt olmayı deneyiniz',
+                'error'
+              )
           }
            
             
