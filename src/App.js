@@ -1,8 +1,7 @@
 import List from "./components/List";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Signup from "./components/SignUp";
-import {Routes, Route,Link, NavLink} from "react-router-dom"
+import {Routes, Route} from "react-router-dom"
 
 function App({isLogin}) {
   return (

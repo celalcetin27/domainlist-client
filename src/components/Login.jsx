@@ -11,7 +11,6 @@ const Login = () => {
     username: "",
     password: ""
   })
-  const [login, setLogin] = useState(false)
 
 
   const handleChange = (e) => {
@@ -30,9 +29,6 @@ const Login = () => {
     try {
       const response = await axios.post("http://localhost:8080/login", user)
       if (response.status === 200) {
-        setLogin(true)
-        console.log(response.data.token);
-
         Swal.fire(
           'Giriş Yaptınız',
           'İçerikleri Görebilirsiniz',
